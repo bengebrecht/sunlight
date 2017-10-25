@@ -40,14 +40,15 @@ while 1:
     if onoff == 1:
         if datetime.datetime.now().hour >= (sunset.hour-5) or datetime.datetime.now().hour <= (sunrise.hour-5):
             if datetime.datetime.now().minute >= sunset.minute:
-                f.write("Turning plug off")
+                f.write(", Turning plug off")
                 plug.turn_off()
                 onoff = 0
     else:
         if datetime.datetime.now().hour <= (sunrise.hour-5):
             if datetime.datetime.now().minute <= sunrise.minute:
-                print("Turning plug on")
+                print(", Turning plug on")
                 plug.turn_on()
+    f.write("\n")
     f.flush()
     os.fsync(f)
     time.sleep(30)
